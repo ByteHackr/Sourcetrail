@@ -22,7 +22,7 @@ public:
 
 	bool operator==(const ApplicationSettings& other) const;
 
-	int getMaxRecentProjectsCount() const;
+	size_t getMaxRecentProjectsCount() const;
 
 	// application
 	std::string getFontName() const;
@@ -81,6 +81,9 @@ public:
 
 	bool getVerboseIndexerLoggingEnabled() const;
 	void setVerboseIndexerLoggingEnabled(bool loggingEnabled);
+
+	FilePath getLogDirectoryPath() const;
+	void setLogDirectoryPath(const FilePath& path);
 
 	int getLogFilter() const;
 	void setLogFilter(int mask);

@@ -138,7 +138,7 @@ bool ApplicationSettings::operator==(const ApplicationSettings& other) const
 		utility::isPermutation<FilePath>(getFrameworkSearchPaths(), other.getFrameworkSearchPaths());
 }
 
-int ApplicationSettings::getMaxRecentProjectsCount() const
+size_t ApplicationSettings::getMaxRecentProjectsCount() const
 {
 	return 7;
 }
@@ -335,6 +335,17 @@ bool ApplicationSettings::getVerboseIndexerLoggingEnabled() const
 void ApplicationSettings::setVerboseIndexerLoggingEnabled(bool value)
 {
 	setValue<bool>("application/verbose_indexer_logging_enabled", value);
+}
+
+FilePath ApplicationSettings::getLogDirectoryPath() const
+{
+	return FilePath(getValue<std::wstring>(
+		"application/log_directory_path", UserPaths::getLogPath().getAbsolute().wstr()));
+}
+
+void ApplicationSettings::setLogDirectoryPath(const FilePath& path)
+{
+	setValue<std::wstring>("application/log_directory_path", path.wstr());
 }
 
 void ApplicationSettings::setLogFilter(int mask)
